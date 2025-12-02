@@ -87,28 +87,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-     - img/Hello1.jpg
-     - img/Hello2.jpg
-     - img/Hello3.jpg
-     - img/Terms_of_Use.png
-     - img/Privacy_Policy.png
-     - img/Support.png
-     - img/About_Us.png
-     - img/artisan.png
-     - img/clients.png
-     - img/order.png
-     - img/problem.png
-     - img/artisan1.png
-     - img/category.png
-     - img/up.png
-     - img/down.png
-     - img/logo.png
-     - img/Mask group.png
-     - img/herfa_icon.png
-     - img/potter 1.png
-     - img/home1.png
-     - img/home2.png
-     - img/Success.png
+     - img/
 #     - assets/model_no_quant.tflite
      - assets/labels.txt
      
