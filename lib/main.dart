@@ -58,89 +58,79 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   @override
   void initState() {
     super.initState();
-    _startSplashSequence();
-  }
-
-  Future<void> _startSplashSequence() async {
-    await Future.delayed(Duration(seconds: 2)); // Optional: وقت الـ splash
     _checkOnboardingStatus();
   }
 
   Future<void> _checkOnboardingStatus() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final bool hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
+    final prefs = await SharedPreferences.getInstance();
+    final bool hasSeenOnboarding = prefs.getBool('hasSeenOnboarding') ?? false;
 
-      if (!mounted) return;
-
-      if (!hasSeenOnboarding) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => FirstScreen()),
-        );
-      } else {
-        _checkLoginStatus();
-      }
-    } catch (e) {
-      // أي خطأ يرجع للـ LoginScreen
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => LoginScreen()),
-        );
-      }
+    if (!hasSeenOnboarding) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => FirstScreen()),
+        (Route<dynamic> route) => false,
+      );
+    } else {
+      _checkLoginStatus();
     }
   }
 
   Future<void> _checkLoginStatus() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final String? accessToken = prefs.getString('AccessToken');
-      final String? role = prefs.getString('Role');
+    final prefs = await SharedPreferences.getInstance();
+    final String? accessToken = prefs.getString('AccessToken');
+    final String? role = prefs.getString('Role');
 
-      if (!mounted) return;
-
-      if (accessToken != null && role != null && accessToken.isNotEmpty && role.isNotEmpty) {
+    if (accessToken != null && role != null && accessToken.isNotEmpty && role.isNotEmpty) {
+      try {
         final apiService = ApiService();
         final data = await apiService.getMyInformation();
+        if (!data.containsKey('error')) {
+          Widget nextScreen;
+          if (role == "Admin") {
+            nextScreen = CustomNavigatorAdmin();
+          } else if (role == "Client") {
+            nextScreen = CombinedNavigation();
+          } else if (role == "Artisan") {
+            nextScreen = CustomNavigator();
+          } else {
+            nextScreen = LoginScreen();
+          }
 
-        if (!mounted) return;
-
-        Widget nextScreen;
-
-        if (data.containsKey('error')) {
-          await prefs.clear();
-          nextScreen = LoginScreen();
-        } else {
-          if (role == "Admin") nextScreen = CustomNavigatorAdmin();
-          else if (role == "Client") nextScreen = CombinedNavigation();
-          else if (role == "Artisan") nextScreen = CustomNavigator();
-          else nextScreen = LoginScreen();
-        }
-
-        if (mounted) {
-          Navigator.pushReplacement(
+          Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (_) => nextScreen),
+            MaterialPageRoute(builder: (context) => nextScreen),
+            (Route<dynamic> route) => false,
+          );
+        } else {
+          await prefs.remove('AccessToken');
+          await prefs.remove('RefreshToken');
+          await prefs.remove('Role');
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+            (Route<dynamic> route) => false,
           );
         }
-      } else {
-        Navigator.pushReplacement(
+      } catch (e) {
+        await prefs.remove('AccessToken');
+        await prefs.remove('RefreshToken');
+        await prefs.remove('Role');
+        Navigator.pushAndRemoveUntil(
           context,
-          MaterialPageRoute(builder: (_) => LoginScreen()),
+          MaterialPageRoute(builder: (context) => LoginScreen()),
+          (Route<dynamic> route) => false,
         );
       }
-    } catch (e) {
-      if (mounted) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => LoginScreen()),
-        );
-      }
+    } else {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => LoginScreen()),
+        (Route<dynamic> route) => false,
+      );
     }
   }
 
