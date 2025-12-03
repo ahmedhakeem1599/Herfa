@@ -1,26 +1,35 @@
 # Herfa – Flutter Mobile Application
 
 Herfa is a mobile application designed to support local artisans by helping them showcase and sell their handmade products.  
-The app ensures transparency and trust through AI-powered product classification (Handmade vs Manufactured) and provides both customers and admins with a smooth and efficient experience.
+The app ensures transparency and trust through AI-powered product classification (Handmade vs Manufactured) and provides both customers, artisans, and admins with a smooth and efficient experience.
 
-This repository contains the **Flutter application**, fully implemented by me, including user flows, admin interfaces, and direct integration with the machine learning model.
+This repository contains the **Flutter application**, fully implemented by me, including user flows, admin and artisan interfaces, and direct integration with the machine learning model.
 
 ---
 
 ## 🚀 Features
 
 ### 🧵 Customer Features
-- Browse handmade products through organized categories.
-- View artisan profiles and product details.
-- Real-time product verification using an AI model (YOLOv8).
-- Smooth and modern user interface designed for easy navigation.
+- Browse handmade products through organized categories.  
+- View artisan profiles and product details.  
+- Real-time product verification using an AI model (YOLOv8).  
+- Smooth and modern user interface designed for easy navigation.  
 
 ### 🛠️ Admin Features
 The app includes a dedicated admin panel inside the Flutter application:
-- Dashboard overview for system activity.
-- Manage artisans, customers, and products.
-- Review AI classification results for product verification.
-- Monitor platform analytics and performance.
+- Dashboard overview for system activity.  
+- Manage artisans, customers, and products.  
+- Review AI classification results for product verification.  
+- Monitor platform analytics and performance.  
+
+### 👩‍🎨 Artisan Features
+The app includes a dedicated artisan panel inside the Flutter application:
+- Manage and showcase handmade products.  
+- Add, edit, or remove products with real-time AI verification (Handmade vs Manufactured).  
+- Track orders, approve or complete them, and view order status.  
+- Monitor product performance, sales, and customer interactions through the artisan dashboard.  
+- Update profile information and upload verification documents.  
+- Receive notifications for new orders, verification results, and account updates.  
 
 ---
 
@@ -28,9 +37,9 @@ The app includes a dedicated admin panel inside the Flutter application:
 Although the machine learning model itself is developed separately,  
 **the Flutter app is fully integrated with the model** using API communication:
 
-- Send product images to the server.
-- Receive classification results from the YOLOv8 model.
-- Display instant verification to customers and admins.
+- Send product images to the server.  
+- Receive classification results from the YOLOv8 model.  
+- Display instant verification to customers and artisans.  
 - Prevent publishing manufactured items as handmade.
 
 This ensures transparency and builds trust between artisans and customers.
@@ -40,12 +49,12 @@ This ensures transparency and builds trust between artisans and customers.
 ## 📱 Mobile App (Flutter)
 
 ### My Responsibilities:
-- Built the entire Flutter application (UI/UX + logic).
-- Implemented user and admin screens with clean architecture.
-- Integrated the app with the deep learning model using REST APIs.
-- Organized project structure for scalability and maintainability.
-- Added analytics screens for artisans and admins.
-- Ensured full responsiveness across devices.
+- Built the entire Flutter application (UI/UX + logic).  
+- Implemented customer, artisan, and admin screens with clean architecture.  
+- Integrated the app with the deep learning model using REST APIs.  
+- Organized project structure for scalability and maintainability.  
+- Added analytics screens for artisans and admins.  
+- Ensured full responsiveness across devices.  
 
 ### Main Screens:
 - Home & Categories  
@@ -64,7 +73,6 @@ This ensures transparency and builds trust between artisans and customers.
 ### **Frontend (Mobile)**
 - Flutter  
 - Dart  
-- State Management (e.g., Cubit / GetX / Bloc depending on your project)  
 - REST API Integration  
 
 ### **AI**
