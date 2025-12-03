@@ -76,7 +76,8 @@ This ensures transparency and builds trust between artisans and customers.
 ### **Frontend (Mobile)**
 - Flutter  
 - Dart  
-- REST API Integration  
+- REST API Integration
+- FireBase
 
 ### **AI**
 - YOLOv8 (used through API)
