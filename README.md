@@ -78,6 +78,3 @@ This ensures transparency and builds trust between artisans and customers.
 ### **AI**
 - YOLOv8 (used through API)
 
----
-
-## 📦 Project Structure (Example)
