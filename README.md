@@ -1,7 +1,6 @@
 # Herfa – Craft Management System (Flutter Mobile Application)
-<p align="center">
-  <img src="img/logo.png" width="200">
-</p>
+## 🎥 Project Demo Video  
+🔗 https://drive.google.com/file/d/1z7fuuZPHD-76o-yVQ6ZOWEMdpVOZpnfo/view
 
 Herfa is a **Craft Management System** mobile application designed to support local artisans by helping them showcase and sell their handmade products.  
 The app ensures transparency and trust through **AI-powered product classification** (Handmade vs Manufactured) and provides a smooth and efficient experience for **customers, artisans, and admins**.
